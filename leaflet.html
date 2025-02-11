@@ -60,25 +60,40 @@
                 <!-- ถ่ายภาพ -->
                  <div class="row text-center">
                     <label for="cameraInput" class="btn"><i class="bi bi-camera" style="font-size: 50px; color: #63513d;"></i></label>
-                    <input type="file" id="cameraInput" accept="image/*" capture="environment" style="display: none;">
+                    <input type="file" id="cameraInput" accept="image/*" capture="environment" style="display: none;" onchange="getTakePhoto()">
 
-                <!-- แสดงภาพที่ถ่าย -->
+                    <div class="text-center" style="margin: 10px;">
+                        <!-- Image preview -->
+                        <div id="imagePreviewStore"></div>
+                    </div>
+
                  </div>
+
+                 <!-- getLatitude,longtitufe -->
+                 <div id="locationInfo" name="locationInfo" hidden>
+                    class="bg-white p-4 rounded-lg shadow-sm max-w-sm mx-auto my-4">
+                    <div class="flex justify-between">
+                        <p id="latitude" class="text-gray-700 font-medium pb-2">Latitude: </p>
+                        <p id="longitude" class="text-gray-700 font-medium pb-2">Longitude: </p>
+                    </div>
+                    <p id="fullAddress">สถานที่</p>
+                </div>
+
                  <!-- Latitude,longtitufe -->
                 <div class="mb-3" id="addressLatLon" style="margin:10px;">
                     <div class="mb-3">
                         <div class="row g-3">
                         <div class="col">
-                            <input type="text" class="form-control" id="latitudeMap" placeholder="Latitude" aria-label="Latitude"  name="latitudeGPS" readonly>
+                            <input type="text" class="form-control" id="latitudeInput" placeholder="Latitude" aria-label="Latitude"  name="latitudeInput" readonly>
                         </div>
                         <div class="col">
-                            <input type="text" class="form-control" id="longitudeMap" placeholder="Longitude" aria-label="Longitude"  name="longitudeGPS" readonly>
+                            <input type="text" class="form-control" id="longitudeInput" placeholder="Longitude" aria-label="Longitude"  name="longitudeInput" readonly>
                         </div>
                         </div>
                     </div>
                     <div class="mb-3">
                         <div class="col-12">
-                        <input type="text" class="form-control" id="inputAddress" placeholder="Address" name="addressGPS" readonly>
+                        <input type="text" class="form-control" id="fullAddressInput" placeholder="Address" name="fullAddressInput" readonly>
                         </div>
                     </div>
                     </div>           
@@ -95,5 +110,8 @@
         </div>
         <!-- close container -->
     </div>
+<!-- ่javascript -->
+    <script src="jsRecheck.js"></script>
+    <script src="jsImg.js"></script>
 </body>
 </html>
