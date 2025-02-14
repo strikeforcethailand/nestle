@@ -352,29 +352,6 @@ async function showConfirmationDialog() {
     }
 }
 
-	async function openCamera() {
-    const constraints = { video: { facingMode: "user" } }; // ใช้กล้องหน้า
-
-    try {
-        const stream = await navigator.mediaDevices.getUserMedia(constraints);
-        const video = document.getElementById('video');
-        video.srcObject = stream;
-        
-        // แสดงปุ่มถ่ายภาพ
-        const captureButton = document.createElement("button");
-        captureButton.innerText = "บันทึกภาพ";
-        captureButton.className = "mt-2 p-2 bg-blue-500 text-white rounded-lg";
-        captureButton.onclick = capturePhoto;
-
-        document.body.appendChild(video); // แสดงกล้อง
-        document.body.appendChild(captureButton); // แสดงปุ่มบันทึกภาพ
-
-    } catch (err) {
-        console.error("ไม่สามารถเปิดกล้องได้:", err);
-        alert("กรุณาอนุญาตให้ใช้กล้อง!");
-    }
-}
-
 </script>
 </body>
 </html>
