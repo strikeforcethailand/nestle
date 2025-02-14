@@ -134,27 +134,27 @@ async function sendFlexMessage() {
                                 type: 'box',
                                 layout: 'horizontal',
                                 contents: [
-					{
+                                    {
+                                        type: 'text',
+                                        text: 'รหัสพนักงาน',
+                                        size: 'sm',
+                                        color: '#555555',
+                                        flex: 1
+                                    },
+                                    {
+                                        type: 'text',
+                                        text: document.getElementById('keynumberId').value,
+                                        size: 'sm',
+                                        color: '#111111',
+                                        align: 'end',
+                                        flex: 2
+                                    }
+                                ]
+                            },
+                            {
                                 type: 'box',
                                 layout: 'horizontal',
                                 contents: [
-	                                    {
-	                                        type: 'text',
-	                                        text: 'รหัสพนักงาน',
-	                                        size: 'sm',
-	                                        color: '#555555',
-	                                        flex: 1
-	                                    },
-	                                    {
-	                                        type: 'text',
-	                                        text: document.getElementById('keynumberId').value,
-	                                        size: 'sm',
-	                                        color: '#111111',
-	                                        align: 'end',
-	                                        flex: 2
-	                                    }
-	                                ]
-	                            },
                                     {
                                         type: 'text',
                                         text: 'ชื่อ-สกุล',
