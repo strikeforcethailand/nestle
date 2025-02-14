@@ -90,21 +90,20 @@ async function getUserProfile() {
 
 // ฟังก์ชันสำหรับส่งข้อความ Flex ไปยังผู้ใช้
 async function sendFlexMessage() {
+    // ดึงค่าจาก input field
+    const keynumber = document.getElementById('keynumberId').value;
+    const name = document.getElementById('nameId').value;
+    const route = document.getElementById('keynumber2Id').value;
+
     const flexMessage = {
         type: 'flex',
         altText: 'ลงทะเบียนเรียบร้อย',
         contents: {
             type: 'bubble',
             styles: {
-                header: {
-                    backgroundColor: '#f0f0f0'
-                },
-                footer: {
-                    backgroundColor: '#f0f0f0'
-                },
-                body: {
-                    backgroundColor: '#ffffff'
-                }
+                header: { backgroundColor: '#f0f0f0' },
+                footer: { backgroundColor: '#f0f0f0' },
+                body: { backgroundColor: '#ffffff' }
             },
             header: {
                 type: 'box',
@@ -134,63 +133,24 @@ async function sendFlexMessage() {
                                 type: 'box',
                                 layout: 'horizontal',
                                 contents: [
-                                    {
-                                        type: 'text',
-                                        text: 'รหัสพนักงาน',
-                                        size: 'sm',
-                                        color: '#555555',
-                                        flex: 1
-                                    },
-                                    {
-                                        type: 'text',
-                                        text: document.getElementById('keynumberId').value,
-                                        size: 'sm',
-                                        color: '#111111',
-                                        align: 'end',
-                                        flex: 2
-                                    }
+                                    { type: 'text', text: 'รหัสพนักงาน', size: 'sm', color: '#555555', flex: 1 },
+                                    { type: 'text', text: keynumber, size: 'sm', color: '#111111', align: 'end', flex: 2 }
                                 ]
                             },
                             {
                                 type: 'box',
                                 layout: 'horizontal',
                                 contents: [
-                                    {
-                                        type: 'text',
-                                        text: 'ชื่อ-สกุล',
-                                        size: 'sm',
-                                        color: '#555555',
-                                        flex: 1
-                                    },
-                                    {
-                                        type: 'text',
-                                        text: document.getElementById('nameId').value,
-                                        size: 'sm',
-                                        color: '#111111',
-                                        align: 'end',
-                                        flex: 2
-                                    }
+                                    { type: 'text', text: 'ชื่อ-สกุล', size: 'sm', color: '#555555', flex: 1 },
+                                    { type: 'text', text: name, size: 'sm', color: '#111111', align: 'end', flex: 2 }
                                 ]
                             },
                             {
                                 type: 'box',
                                 layout: 'horizontal',
                                 contents: [
-                                    {
-                                        type: 'text',
-                                        text: 'Route',
-                                        size: 'sm',
-                                        color: '#555555',
-                                        flex: 1
-                                    },
-                                    {
-                                        type: 'text',
-                                        text: document.getElementById('keynumber2Id').value,
-                                        size: 'sm',
-                                        color: '#111111',
-                                        align: 'end',
-                                        flex: 2
-                                    }
+                                    { type: 'text', text: 'Route', size: 'sm', color: '#555555', flex: 1 },
+                                    { type: 'text', text: route, size: 'sm', color: '#111111', align: 'end', flex: 2 }
                                 ]
                             }
                         ]
@@ -201,13 +161,7 @@ async function sendFlexMessage() {
                 type: 'box',
                 layout: 'vertical',
                 contents: [
-                    {
-                        type: 'text',
-                        text: 'ยินดีต้อนรับ!',
-                        size: 'sm',
-                        color: '#aaaaaa',
-                        align: 'center'
-                    }
+                    { type: 'text', text: 'ยินดีต้อนรับ!', size: 'sm', color: '#aaaaaa', align: 'center' }
                 ]
             }
         }
@@ -215,6 +169,7 @@ async function sendFlexMessage() {
 
     await liff.sendMessages([flexMessage]); // ส่งข้อความ Flex ผ่าน LIFF
 }
+
 
 // กำหนดตัวแปรสำหรับใช้ในฟังก์ชันต่างๆ
 let url = `${WEB_APP_URL}`;
