@@ -375,23 +375,6 @@ async function showConfirmationDialog() {
     }
 }
 
-function capturePhoto() {
-    const video = document.getElementById('video');
-    const canvas = document.getElementById('canvas');
-    const preview = document.getElementById('preview');
-
-    canvas.width = video.videoWidth;
-    canvas.height = video.videoHeight;
-    canvas.getContext('2d').drawImage(video, 0, 0);
-
-    // แปลงภาพเป็น Base64 และแสดงในโปรไฟล์
-    preview.src = canvas.toDataURL('image/png');
-
-    // ปิดกล้อง
-    video.srcObject.getTracks().forEach(track => track.stop());
-    video.remove(); // ลบ video ออกจากหน้าเว็บ
-    document.querySelector("button[onclick='capturePhoto()']").remove(); // ลบปุ่มบันทึกภาพ
-}
 </script>
 </body>
 </html>
