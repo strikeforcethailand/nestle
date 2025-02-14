@@ -18,19 +18,23 @@
 <body class="bg-slate-100 min-h-screen">
 <div class="max-w-md m-auto p-2">
         <form>
-            <div class="bg-white rounded-lg p-10">    
-                <div class="mb-5 text-center">
-                    <!-- แสดงภาพโปรไฟล์ที่อัพโหลด -->
-                    <div class="mx-auto w-32 h-32 mb-2 border rounded-lg relative bg-slate-100 mb-4 shadow-inset">
-                        <img src="https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_960_720.png" alt="Default Image" id="preview" class="h-32 w-32 object-cover rounded-lg">
-                    </div>
-                    <!-- ปุ่มสำหรับอัพโหลดรูปภาพ -->
-                    <label for="file" class="cursor-pointer inline-flex justify-between items-center p-2 rounded-lg text-slate-800 bg-slate-100 hover:bg-slate-300">
-                        อัพโหลดรูป
-                        <input type="file" id="file" name="file" accept="image/*" capture="user" class="hidden" onclick="openCamera()">
-                    </label>
-                    <div class="mx-auto w-48 text-slate-500 text-xs text-center mt-1">คลิกเพื่ออัพโหลดรูปของคุณ</div>
-                </div>
+            <div class="bg-white rounded-lg p-10">
+		    <div class="mb-5 text-center">
+			    <!-- แสดงภาพโปรไฟล์ที่อัพโหลด -->
+			    <div class="mx-auto w-32 h-32 mb-2 border rounded-lg relative bg-slate-100 mb-4 shadow-inset">
+			        <img src="https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_960_720.png" alt="Default Image" id="preview" class="h-32 w-32 object-cover rounded-lg">
+			    </div>
+			    <!-- ปุ่มสำหรับถ่ายรูป -->
+			    <button onclick="openCamera()" class="cursor-pointer inline-flex justify-between items-center p-2 rounded-lg text-slate-800 bg-slate-100 hover:bg-slate-300">
+			        ถ่ายรูป
+			    </button>
+			    <div class="mx-auto w-48 text-slate-500 text-xs text-center mt-1">คลิกเพื่อถ่ายรูปของคุณ</div>
+			</div>
+			
+			<!-- ซ่อนวิดีโอสำหรับแสดงกล้อง -->
+			<video id="video" autoplay playsinline class="hidden"></video>
+			<canvas id="canvas" style="display:none;"></canvas>
+		
                 <div class="flex flex-col">
                 <div class="mb-4">
                     <!-- ฟิลด์สำหรับใส่ Line ID -->
@@ -349,6 +353,47 @@ async function showConfirmationDialog() {
     } catch (err) {
         console.error("เกิดข้อผิดพลาด:", err);
     }
+}
+
+	async function openCamera() {
+    const constraints = { video: { facingMode: "user" } }; // ใช้กล้องหน้า
+
+    try {
+        const stream = await navigator.mediaDevices.getUserMedia(constraints);
+        const video = document.getElementById('video');
+        video.srcObject = stream;
+        
+        // แสดงปุ่มถ่ายภาพ
+        const captureButton = document.createElement("button");
+        captureButton.innerText = "บันทึกภาพ";
+        captureButton.className = "mt-2 p-2 bg-blue-500 text-white rounded-lg";
+        captureButton.onclick = capturePhoto;
+
+        document.body.appendChild(video); // แสดงกล้อง
+        document.body.appendChild(captureButton); // แสดงปุ่มบันทึกภาพ
+
+    } catch (err) {
+        console.error("ไม่สามารถเปิดกล้องได้:", err);
+        alert("กรุณาอนุญาตให้ใช้กล้อง!");
+    }
+}
+
+function capturePhoto() {
+    const video = document.getElementById('video');
+    const canvas = document.getElementById('canvas');
+    const preview = document.getElementById('preview');
+
+    canvas.width = video.videoWidth;
+    canvas.height = video.videoHeight;
+    canvas.getContext('2d').drawImage(video, 0, 0);
+
+    // แปลงภาพเป็น Base64 และแสดงในโปรไฟล์
+    preview.src = canvas.toDataURL('image/png');
+
+    // ปิดกล้อง
+    video.srcObject.getTracks().forEach(track => track.stop());
+    video.remove(); // ลบ video ออกจากหน้าเว็บ
+    document.querySelector("button[onclick='capturePhoto()']").remove(); // ลบปุ่มบันทึกภาพ
 }
 </script>
 </body>
