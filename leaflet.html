@@ -76,16 +76,6 @@
 
                  </div>
 
-                 <!-- getLatitude,longtitufe -->
-                 <div id="locationInfo" name="locationInfo" hidden>
-                    class="bg-white p-4 rounded-lg shadow-sm max-w-sm mx-auto my-4">
-                    <div class="flex justify-between">
-                        <p id="latitude" class="text-gray-700 font-medium pb-2">Latitude: </p>
-                        <p id="longitude" class="text-gray-700 font-medium pb-2">Longitude: </p>
-                    </div>
-                    <p id="fullAddress">สถานที่</p>
-                </div>
-
                  <!-- Latitude,longtitufe -->
                 <div class="mb-3" id="addressLatLon" style="margin:10px;">
                     <div class="mb-3">
@@ -98,11 +88,31 @@
                         </div>
                         </div>
                     </div>
+
                     <div class="mb-3">
                         <div class="col-12">
                         <input type="text" class="form-control" id="fullAddressInput" placeholder="Address" name="fullAddressInput" readonly>
                         </div>
                     </div>
+
+                    <!-- Spinner -->
+                        <div class="text-center" id="spinner" style="display: none;">
+                            <div class="spinner-grow text-primary" role="status">
+                            <span class="visually-hidden">Loading...</span>
+                            </div>
+                            <div class="spinner-grow text-secondary" role="status">
+                            <span class="visually-hidden">Loading...</span>
+                            </div>
+                            <div class="spinner-grow text-success" role="status">
+                            <span class="visually-hidden">Loading...</span>
+                            </div>
+                            <div class="spinner-grow text-danger" role="status">
+                            <span class="visually-hidden">Loading...</span>
+                            </div>
+                            <div class="spinner-grow text-warning" role="status">
+                            <span class="visually-hidden">Loading...</span>
+                            </div>
+                        </div>
                     </div>           
                 </div>
 
@@ -110,7 +120,9 @@
                     <div class="mb-3">
                         <button class="btn btn-submit" type="button" id="submit">ส่งข้อมูล <i class="bi bi-caret-right"></i></button>
                     </div>
-                </div>         
+                </div>
+                
+                
       
             </div>
             <!-- <close div class="col-md-6 mx-auto"> -->
