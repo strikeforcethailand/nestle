@@ -102,3 +102,79 @@ body{
     animation: bounceIn 1s ease-out;
   }
   
+  #spinner {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    margin: 20px 0;
+  }
+  
+  /* Animation สำหรับ spinner */
+  @keyframes blink {
+    0%, 100% {
+      opacity: 1;
+    }
+    50% {
+      opacity: 0.2;
+    }
+  }
+  
+  /* กำหนด animation ให้แต่ละ spinner */
+  #spinner {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 8px; /* ระยะห่างระหว่าง spinner */
+    margin: 20px 0;
+  }
+  
+  /* ขนาดเล็กลง */
+  #spinner .spinner-grow {
+    width: 1rem; /* ปรับขนาดความกว้าง */
+    height: 1rem; /* ปรับขนาดความสูง */
+    animation: blink 1.5s infinite;
+  }
+  
+  /* Animation สำหรับกระพริบพร้อมกัน */
+  @keyframes blink {
+    0%, 100% {
+      opacity: 1;
+    }
+    50% {
+      opacity: 0.2;
+    }
+  }
+  
+  /* Animation สำหรับไล่กระพริบทีละจุด */
+  @keyframes wave {
+    0%, 100% {
+      transform: scale(1);
+      opacity: 1;
+    }
+    50% {
+      transform: scale(1.2);
+      opacity: 0.5;
+    }
+  }
+  
+  /* กำหนด animation ให้แต่ละ spinner ไล่กระพริบ */
+  #spinner .spinner-grow.text-primary {
+    animation: blink 1.5s infinite, wave 1.5s infinite;
+  }
+  
+  #spinner .spinner-grow.text-secondary {
+    animation: blink 1.5s infinite, wave 1.5s infinite 0.3s;
+  }
+  
+  #spinner .spinner-grow.text-success {
+    animation: blink 1.5s infinite, wave 1.5s infinite 0.6s;
+  }
+  
+  #spinner .spinner-grow.text-danger {
+    animation: blink 1.5s infinite, wave 1.5s infinite 0.9s;
+  }
+  
+  #spinner .spinner-grow.text-warning {
+    animation: blink 1.5s infinite, wave 1.5s infinite 1.2s;
+  }
