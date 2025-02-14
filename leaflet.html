@@ -14,16 +14,15 @@
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script src="https://static.line-scdn.net/liff/edge/2.1/sdk.js"></script>
     <title>Sale-Report</title>
-    
 </head>
 <body>
     <div class="container">
         <div class="col-md-6 mx-auto">
             <!-- Header -->
             <div class="mb-3">
-                <div class="row">
+                <div class="row text-center">
                     <div class="col-12">
-                    <img src="https://www.nestle.co.th/themes/custom/da_vinci_code/logo.svg" class="rounded mx-auto d-block" alt="..." style="width: 350px; object-fit: contain; margin-top: 25px;" >
+                        <img src="https://img2.pic.in.th/pic/NIC_logo_gold.png" class="rounded mx-auto d-block animated-logo" alt="..." style="width: 150px; object-fit: contain; margin-top: 25px;">
                     </div>
                 </div>
             </div>     
@@ -56,6 +55,11 @@
                         <label class="btn" for="cafe">ร้านคาเฟ่</label>
                     </div> 
                     <!-- แสดงภาพ     -->
+                </div>
+
+                <div class="mb-3">
+                    <label for="store_name" class="form-label" style="color: #63513d;">ชื่อร้าน</label>
+                    <input type="text" class="form-control" id="store_name" placeholder="ร้านมีสุข">
                 </div>
 
                 <!-- ถ่ายภาพ -->
@@ -112,9 +116,7 @@
         <!-- close container -->
     </div>
 <!-- ่javascript -->
-    <script src="jsLocation.js"></script>
-    <script src="jsIMG.js"></script>
-
-
+    <script src="jsRecheck.js"></script>
+    <script src="jsImg.js"></script>
 </body>
 </html>
