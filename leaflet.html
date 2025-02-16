@@ -34,40 +34,40 @@
                 <div class="mb-3" id="employee">
                     <h4>Employee</h4>    
                     <div class="mb-3">
-                        <input type="text" class="form-control" id="ID_Emp"  placeholder="รหัสพนักงาน" readonly>
+                        <input type="text" class="form-control" id="ID_Emp" name="ID_Emp" placeholder="รหัสพนักงาน"  onchange="fetchEmployeeData()" required>
                     </div>
                     <div class="mb-3">
-                        <input type="text" class="form-control" id="fname" placeholder="ชื่อ-สกุล" readonly>
+                        <input type="text" class="form-control" id="fname" name="fname" placeholder="ชื่อ-สกุล" readonly>
                     </div>
                     <div class="mb-3">
-                        <input type="text" class="form-control" id="position" placeholder="ตำแหน่ง" readonly>
+                        <input type="text" class="form-control" id="route" name="route" placeholder="Route" readonly>
                     </div>
                 </div>
 
-                <div class="mb-3 shoptype">
+                <div class="mb-3 shoptype" id="shop" style="display:none;">
                     <h6 style="color: #63513d;">กรุณาเลือกประเภทร้านค้า</h6>
                     <div class="mb-3 type" style="display: flex; gap: 10px;">
-                        <input type="radio" class="btn-check" name="shoptype" id="restaurant" autocomplete="off" checked>
+                        <input type="radio" class="btn-check" name="shoptype" value="ร้านอาหาร" id="restaurant" autocomplete="off" checked>
                         <label class="btn" for="restaurant">ร้านอาหาร</label>
                     
-                        <input type="radio" class="btn-check" name="shoptype" id="buffet" autocomplete="off">
+                        <input type="radio" class="btn-check" name="shoptype" value="ร้านอาหารบุฟเฟ่ต์" id="buffet" autocomplete="off">
                         <label class="btn" for="buffet">ร้านอาหารบุฟเฟ่ต์</label>
                     
-                        <input type="radio" class="btn-check" name="shoptype" id="cafe" autocomplete="off">
+                        <input type="radio" class="btn-check" name="shoptype" value="ร้านคาเฟ่" id="cafe" autocomplete="off">
                         <label class="btn" for="cafe">ร้านคาเฟ่</label>
                     </div> 
                     <!-- แสดงภาพ     -->
                 </div>
 
-                <div class="mb-3">
+                <div class="mb-3" id="storeName" style="display:none;">
                     <label for="store_name" class="form-label" style="color: #63513d;">ชื่อร้าน</label>
-                    <input type="text" class="form-control" id="store_name" placeholder="ร้านมีสุข">
+                    <input type="text" class="form-control" id="store_name" name="store_name" placeholder="ร้านมีสุข">
                 </div>
 
                 <!-- ถ่ายภาพ -->
-                 <div class="row text-center">
+                 <div class="row text-center" id="storeIMG" style="display:none;">
                     <label for="cameraInput" class="btn"><i class="bi bi-camera" style="font-size: 50px; color: #63513d;"></i></label>
-                    <input type="file" id="cameraInput" accept="image/*" capture="environment" style="display: none;" onchange="getTakePhoto()">
+                    <input type="file" id="cameraInput" name="cameraInput"  accept="image/*" capture="environment" style="display: none;" onchange="getTakePhoto()">
 
                     <div class="text-center" style="margin: 10px;">
                         <!-- Image preview -->
@@ -78,7 +78,7 @@
 
                  <!-- Latitude,longtitufe -->
                 <div class="mb-3" id="addressLatLon" style="margin:10px;">
-                    <div class="mb-3">
+                    <div class="mb-3" id="latlon" style="display:none;">
                         <div class="row g-3">
                         <div class="col">
                             <input type="text" class="form-control" id="latitudeInput" placeholder="Latitude" aria-label="Latitude"  name="latitudeInput" readonly>
@@ -89,7 +89,7 @@
                         </div>
                     </div>
 
-                    <div class="mb-3">
+                    <div class="mb-3" id="fullAddress" style="display:none;">
                         <div class="col-12">
                         <input type="text" class="form-control" id="fullAddressInput" placeholder="Address" name="fullAddressInput" readonly>
                         </div>
@@ -116,21 +116,22 @@
                     </div>           
                 </div>
 
-                <div class="d-grid gap-2 d-md-flex" style="display: flex; align-items: center; justify-content: center;">
+                <div class="d-grid gap-2 d-md-flex " style="display: flex; align-items: center; justify-content: center;">
                     <div class="mb-3">
-                        <button class="btn btn-submit" type="button" id="submit">ส่งข้อมูล <i class="bi bi-caret-right"></i></button>
+                        <button class="btn btn-submit" type="button" id="submit" style="display:none;" onclick="submitForm()">ส่งข้อมูล <i class="bi bi-caret-right"></i></button>
                     </div>
                 </div>
                 
-                
-      
             </div>
             <!-- <close div class="col-md-6 mx-auto"> -->
         </div>
         <!-- close container -->
     </div>
 <!-- ่javascript -->
+    <script src="jsbackend.js"></script>
     <script src="jsRecheck.js"></script>
     <script src="jsImg.js"></script>
+    <script src="jsSubmitForm.js"></script>
+    
 </body>
 </html>
