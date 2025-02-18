@@ -32,7 +32,14 @@
              <div class="mb-3 step1">
                 <!-- Employee -->
                 <div class="mb-3" id="employee">
-                    <h4>Employee</h4>    
+                    <div class="row">
+                        <div class="col">
+                            <h4>Employee</h4>    
+                        </div>
+                        <div class="col">
+                            <div id="score"></div> 
+                        </div>
+                    </div>   
                     <div class="mb-3">
                         <input type="text" class="form-control" id="ID_Emp" name="ID_Emp" placeholder="รหัสพนักงาน"  onchange="fetchEmployeeData()" required>
                     </div>
@@ -132,6 +139,7 @@
     <script src="jsRecheck.js"></script>
     <script src="jsImg.js"></script>
     <script src="jsSubmitForm.js"></script>
+    <script src="jsScore.js"></script>
     
 </body>
 </html>
