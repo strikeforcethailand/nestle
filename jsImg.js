@@ -80,9 +80,22 @@ function getTakePhoto() {
     document.getElementById('fullAddressInput').value = '';
     return false;
   } else {
+    // ตรวจสอบขนาดไฟล์
+    var file = fileInput.files[0];
+    if (file.size > 5000000) { // ขนาดไฟล์ไม่เกิน 5MB
+      Swal.fire({
+        position: "center",
+        icon: "error",
+        title: "ขนาดไฟล์เกิน 5MB กรุณาลองใหม่",
+        showConfirmButton: false,
+        timer: 1500
+      });
+      fileInput.value = '';
+      return false;
+    }
+
     // การโหลดไฟล์ภาพ
     if (fileInput.files && fileInput.files[0]) {
-      var file = fileInput.files[0];
       var reader = new FileReader();
 
       reader.onload = function (e) {
@@ -96,6 +109,7 @@ function getTakePhoto() {
           var width = img.width;
           var height = img.height;
 
+          // ปรับขนาดภาพให้พอดีกับขนาดที่กำหนด
           if (width > height) {
             if (width > maxWidth) {
               height *= maxWidth / width;
@@ -112,48 +126,13 @@ function getTakePhoto() {
           canvas.height = height;
           ctx.drawImage(img, 0, 0, width, height);
 
-          // Display the resized image
+          // แสดงภาพตัวอย่างในหน้าเว็บ
           document.getElementById('imagePreviewStore').innerHTML = '<img width="200px" src="' + canvas.toDataURL('image/jpeg', 0.9) + '"/>';
-          
-          // Convert the canvas to a Blob and prepare to send to server
-          var imageBlob = dataURLToBlob(canvas.toDataURL('image/jpeg', 0.9));
-          sendImageToServer(imageBlob);
-          
-          // Get the location data
-          getLocation();
+          getLocation(); // ดึงตำแหน่งที่ตั้ง
         };
         img.src = e.target.result;
       };
       reader.readAsDataURL(file);
     }
   }
-}
-
-// Helper function to convert base64 to Blob
-function dataURLToBlob(dataURL) {
-  var binary = atob(dataURL.split(',')[1]);
-  var array = [];
-  for (var i = 0; i < binary.length; i++) {
-    array.push(binary.charCodeAt(i));
-  }
-  return new Blob([new Uint8Array(array)], { type: 'image/jpeg' });
-}
-
-// Function to send the image to the server
-function sendImageToServer(imageBlob) {
-  var formData = new FormData();
-  formData.append('cameraInput', imageBlob, 'image.jpg'); // Use the appropriate field name and file name
-
-  // Send the data to the server using fetch
-  fetch('<YOUR_GOOGLE_APPS_SCRIPT_URL>', {
-    method: 'POST',
-    body: formData
-  })
-  .then(response => response.json())
-  .then(data => {
-    console.log('Success:', data);
-  })
-  .catch((error) => {
-    console.error('Error:', error);
-  });
 }

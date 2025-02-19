@@ -134,6 +134,8 @@ window.onload = function() {
     if (savedID) {
         document.getElementById("ID_Emp").value = savedID;
         localStorage.removeItem("saved_ID_Emp");
+        scoreToday();
         fetchEmployeeData();
+        
     }
 };
